@@ -1,0 +1,16 @@
+# makefile macro definition for gfortran (above Ver. 4.4)
+
+FC           = gfortran
+FOPENMP      = -fopenmp
+FDEBUG       = 
+FOPTIM       = -cpp -DGFORTRAN -DF2003 $(FOPT_PLPLOT) -frecord-marker=4 -mcmodel=medium
+FFLAGS       = $(FOPENMP) $(FOPTIM) $(FDEBUG) -c
+FFLAGS_NODBG = $(FOPENMP) $(FOPTIM) -c
+LDFLAGS      = $(FOPENMP)
+
+# NetCDF library
+NC_INC = $(addprefix -I,$(NCINC_D))
+NC_LIB = -L$(NCLIB_D) $(addprefix -l,$(NCLIBS))
+NC_LD  = -Wl,-rpath -Wl,$(NCLIB_D)
+
+
